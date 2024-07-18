@@ -11,19 +11,23 @@ class Db
 
   private static $instance = null;
 
-  private function __construct(){
-
+  private function __construct()
+  {
   }
 
-  private function __clone(){}
+  private function __clone()
+  {
+  }
 
-  public function __wakeup(){}
+  public function __wakeup()
+  {
+  }
 
 
 
-  public static function getInstance(){
-    if(is_null(self::$instance)){
-      
+  public static function getInstance()
+  {
+    if (is_null(self::$instance)) {
       self::$instance = new self();
     }
 
@@ -34,11 +38,9 @@ class Db
   {
     $dsn = "mysql:host={$db_config['host']};dbname={$db_config['dbname']};charset={$db_config['charset']}";
 
-
     try {
       $this->conn = new PDO($dsn, $db_config['username'], $db_config['password'], $db_config['options']);
       return $this;
-      
     } catch (\Throwable $th) {
       abort(500);
     }
@@ -47,14 +49,7 @@ class Db
   public function query(string $query, array $params = []): self
   {
     $this->stmt = $this->conn->prepare($query);
-
-
-    // [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]
-    // $this->stmt->prepare($query);
-    
     $this->stmt->execute($params);
-    // dd($this->stmt);
-
     return $this;
   }
 

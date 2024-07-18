@@ -4,11 +4,6 @@ require_once CORE . '/func.php';
 
 $db_config = require CONFIG . '/db.php';
 
-
-// $db = new Db($defaultConfig);
-
-// $db = Db::getInstance();
-
 $db = (Db::getInstance())->getConect($db_config);
 
 
@@ -83,5 +78,4 @@ foreach ($articles as $key => $item) {
 foreach ($articles as $article) {
   $res = "INSERT INTO `posts` (`title`, `short_desc`, `full_desc`, `slug`, `dt_create`) VALUES ('{$article['title']}', '{$article['description']}', '{$article['text']}', '" . $article['slug'] . "', CURRENT_TIMESTAMP);";
   $db->query($res);
-  // dump('ok');
 }

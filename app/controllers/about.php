@@ -29,9 +29,6 @@ $postsGroup = [
   ],
 ];
 
-
 $title = 'Blog :: about';
 
-
-// require_once '\app\views\about.tpl.php';
 require_once VIEWS . '/about.tpl.php';

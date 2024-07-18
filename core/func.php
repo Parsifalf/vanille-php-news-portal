@@ -1,18 +1,21 @@
 <?php
 
-function dump($data){
+function dump($data)
+{
   echo '<pre>';
   echo var_dump($data);
-  echo'</pre>';
+  echo '</pre>';
 }
 
-function dd($data){
+function dd($data)
+{
   dump($data);
   die;
 }
 
 
-function abort($code = 404){
+function abort($code = 404)
+{
   require_once VIEWS . "/errors/$code.tpl.php";
   http_response_code(404);
   die;
@@ -306,4 +309,17 @@ function slugify($text, $length = null)
     $text = rtrim(substr($text, 0, $length), '-');
 
   return $text;
+}
+
+
+function load($fillable = [])
+{
+  $data = [];
+  foreach ($_POST as $key => $value) {
+    if (in_array($key, $fillable)) {
+      $data[$key] = $value;
+    }
+  }
+
+  return $data;
 }

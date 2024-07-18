@@ -5,10 +5,7 @@ html, body{
 .wrapper{
   min-height: 100%;
   display: flex;
-  /* justify-content: space-between; */
   flex-direction: column;
-
-  /* padding: 0 30px; */
 }
 
 main.main{

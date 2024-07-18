@@ -2,15 +2,7 @@
 include_once CORE . '/classes/Db.php';
 $db_config = require CONFIG . '/db.php';
 
-
-// $db = new Db($defaultConfig);
-
-// $db = Db::getInstance();
-
 $db = (Db::getInstance())->getConect($db_config);
-
-
-// $posts = $conn->fetchAll('SELECT * FROM posts');
 
 $postsGroup = $db->query('SELECT * FROM post_group', [])->fetchAll();
 
@@ -45,6 +37,9 @@ $postsGroup = $db->query('SELECT * FROM post_group', [])->fetchAll();
               </li>
               <li><a class="dropdown-item" href="/">Все записи</a></li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="new-post">Новый пост</a>
           </li>
         </ul>
       </div>
