@@ -1,0 +1,16 @@
+html, body{
+  height: 100%;
+}
+
+.wrapper{
+  min-height: 100%;
+  display: flex;
+  /* justify-content: space-between; */
+  flex-direction: column;
+
+  /* padding: 0 30px; */
+}
+
+main.main{
+  flex: 1 1 auto;
+}
