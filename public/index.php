@@ -15,3 +15,8 @@ $db_config = require CONFIG . '/db.php';
 
 
 // require CONFIG . '/test.php';
+
+
+phpinfo();  
+
+//c:\games\programs\ospanel\modules\php\PHP_8.1\php.exe

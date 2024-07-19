@@ -323,3 +323,25 @@ function load($fillable = [])
 
   return $data;
 }
+
+
+function old($fieldname){
+  return validator($_POST[$fieldname] ?? '');
+}
+
+
+function validator($content){
+  return trim(htmlspecialchars($content, ENT_QUOTES));
+} 
+
+
+function redirect($url = ''){
+  if($url){
+    $redirect = $url;
+  }else{
+    $redirect =  $_SERVER['HTTP_REFERER'] ?? PATH;
+  }
+
+  header("Location: $redirect");
+  die;
+}

@@ -16,7 +16,7 @@
               <form class="row g-3" method="post">
                 <div class="col-md-12">
                   <label for="inputEmail4" class="form-label">Название статьи</label>
-                  <input type="text" class="form-control" id="inputEmail4" name="title" value="<?=$_POST["title"] ?? ''?>" required>
+                  <input type="text" class="form-control" id="inputEmail4" name="title" value="<?=old('title')?>" required>
                 </div>
 
                 <? if (isset($errors['title'])): ?>
@@ -28,7 +28,7 @@
 
                 <div class="col-md-12">
                   <label for="inputSD">Коротнкое описание стататьи</label>
-                  <textarea class="form-control" placeholder="Напишите короткое описание статьи" id="inputSD" name="shortDesc"><?= $_POST["shortDesc"] ?? '' ?></textarea>
+                  <textarea class="form-control" placeholder="Напишите короткое описание статьи" id="inputSD" name="shortDesc"><?=old('shortDesc')?></textarea>
                 </div>
                 <? if (isset($errors['shortDesc'])): ?>
                   <div class="invalid-feedback d-block">
@@ -38,7 +38,7 @@
 
                 <div class="col-md-12">
                   <label for="inputFD">Коротнкое описание стататьи</label>
-                  <textarea required class="form-control" placeholder="Напишите текс статьи" id="inputFD" name="fullDesc"><?= $_POST["fullDesc"] ?? '' ?></textarea>
+                  <textarea required class="form-control" placeholder="Напишите текс статьи" id="inputFD" name="fullDesc"><?=old('fullDesc')?></textarea>
                 </div>
 
                 <? if (isset($errors['fullDesc'])): ?>

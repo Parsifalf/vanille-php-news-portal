@@ -1,6 +1,7 @@
 <?php
 
 include_once CORE . '/classes/Db.php';
+include_once CORE . '/classes/Validator.php';
 
 include_once CORE . '/func.php';
 
@@ -8,21 +9,52 @@ $db_config = require CONFIG . '/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
 
-  // abort(500);
+  // $rules = [
+  //   "title" => [
+  //     "required" => true,
+  //     "min" => 5,
+  //     "max" => 255
+  //   ],
 
-  // $fillable = ['title', "short_desc", "full_desc"];
+  //   "shortDesc" => [
+  //     "required" => true,
+  //     "min" => 5,
+  //     "max" => 255
+  //   ],
 
-  // $params = [
-  //   "title" => $_POST['title'],
-  //   "shortDesc" => $_POST['shortDesc'],
-  //   "fullDesc" => $_POST['fullDesc'],
-  //   "slug" => slugify($_POST['title'])
+  //   "fullDesc" => [
+  //     "required" => true,
+  //     "min" => 10
+  //   ],
   // ];
 
+  // указываем только те инпуты, которые нам необходимы
 
   $fillable = load(['title', "shortDesc", "fullDesc"]);
 
+  $validator = new Validator();
+  $validator->validate($fillable, [
+    "title" => [
+      "required" => true,
+      "min" => 5,
+      "max" => 255
+    ],
+
+    "shortDesc" => [
+      "required" => true,
+      "min" => 5,
+      "max" => 255
+    ],
+
+    "fullDesc" => [
+      "required" => true,
+      "min" => 10
+    ],
+  ]);
+
   $errors = [];
+
+  // проверяем, заполнены ли все инпуты, если нет - то добавляем запись в массив $errors
 
   foreach ($fillable as $key => $value) {
     if (empty(trim($value))) {
@@ -30,29 +62,30 @@ if ($_SERVER["REQUEST_METHOD"] === 'POST') {
     }
   }
 
-  // dd($errors);
+die;
+  // если ошибок нет, про отправляем запрос к БД
 
   if (empty($errors)) {
     $db = (Db::getInstance())->getConect($db_config);
     $res = "INSERT INTO `posts` (`title`, `short_desc`, `full_desc`, `slug`, `dt_create`) VALUES (:title, :shortDesc, :fullDesc, :slug, CURRENT_TIMESTAMP);";
 
-    // $params = [
-    //   "title" => $_POST['title'],
-    //   "shortDesc" => $_POST['shortDesc'],
-    //   "fullDesc" => $_POST['fullDesc'],
-    //   "slug" => slugify($_POST['title'])
-    // ];
+    $params = [
+      "title" => validator($_POST['title']),
+      "shortDesc" => validator($_POST['shortDesc']),
+      "fullDesc" => $_POST['fullDesc'],
+      "slug" => slugify($_POST['title'])
+    ];
 
     $db->query($res, $params);
 
     setcookie("send", "true", time() + 1);
 
-    header('Location: ' . PATH . '/new-post');
-
+    redirect('/new-post');
   }
 
-  include_once VIEWS . '/newPost.tpl.php';
+
 } else {
-  include_once VIEWS . '/newPost.tpl.php';
+  // include_once VIEWS . '/newPost.tpl.php';
 }
 
+include_once VIEWS . '/newPost.tpl.php';

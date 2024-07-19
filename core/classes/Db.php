@@ -48,9 +48,14 @@ class Db
 
   public function query(string $query, array $params = []): self
   {
-    $this->stmt = $this->conn->prepare($query);
-    $this->stmt->execute($params);
-    return $this;
+
+    try{
+      $this->stmt = $this->conn->prepare($query);
+      $this->stmt->execute($params);
+      return $this;
+    }catch(PDOException $ex){
+      throw new Exception($ex->getMessage());
+    }
   }
 
   public function fetchAll()
