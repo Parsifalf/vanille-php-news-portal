@@ -1,13 +1,15 @@
 <?php
 
+namespace myfrm;
+
 $defaultConfig = require CONFIG . '/db.php';
 
 require_once CORE . '/func.php';
 
 class Db
 {
-  protected PDO $conn;
-  protected PDOStatement $stmt;
+  protected \PDO $conn;
+  protected \PDOStatement $stmt;
 
   private static $instance = null;
 
@@ -39,7 +41,7 @@ class Db
     $dsn = "mysql:host={$db_config['host']};dbname={$db_config['dbname']};charset={$db_config['charset']}";
 
     try {
-      $this->conn = new PDO($dsn, $db_config['username'], $db_config['password'], $db_config['options']);
+      $this->conn = new \PDO($dsn, $db_config['username'], $db_config['password'], $db_config['options']);
       return $this;
     } catch (\Throwable $th) {
       abort(500);
@@ -53,7 +55,7 @@ class Db
       $this->stmt = $this->conn->prepare($query);
       $this->stmt->execute($params);
       return $this;
-    }catch(PDOException $ex){
+    }catch(\PDOException $ex){
       throw new Exception($ex->getMessage());
     }
   }

@@ -1,5 +1,6 @@
 <?php
-include_once CORE . '/classes/Db.php';
+use myfrm\Db;
+
 $db_config = require CONFIG . '/db.php';
 
 $db = (Db::getInstance())->getConect($db_config);

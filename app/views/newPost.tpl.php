@@ -1,3 +1,4 @@
+
 <? include VIEWS . '/inc/head.php' ?>
 
 <body>
@@ -7,10 +8,10 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8">
-
+            
             <? if (isset($_COOKIE['send']) && $_COOKIE['send'] === 'true'): ?>
               <h1>Вы успешно отправили данные</h1>
-
+              
             <? else: ?>
               
               <form class="row g-3" method="post">
@@ -18,7 +19,6 @@
                   <label for="inputEmail4" class="form-label">Название статьи</label>
                   <input type="text" class="form-control" id="inputEmail4" name="title" value="<?=old('title')?>" required>
                 </div>
-
                 <? if (isset($errors['title'])): ?>
                   <div class="invalid-feedback d-block">
                     Введите Заголовок

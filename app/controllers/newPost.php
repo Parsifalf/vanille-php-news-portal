@@ -1,32 +1,11 @@
 <?php
 
-include_once CORE . '/classes/Db.php';
-include_once CORE . '/classes/Validator.php';
-
-include_once CORE . '/func.php';
+use myfrm\Validator;
+use myfrm\Db;
 
 $db_config = require CONFIG . '/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
-
-  // $rules = [
-  //   "title" => [
-  //     "required" => true,
-  //     "min" => 5,
-  //     "max" => 255
-  //   ],
-
-  //   "shortDesc" => [
-  //     "required" => true,
-  //     "min" => 5,
-  //     "max" => 255
-  //   ],
-
-  //   "fullDesc" => [
-  //     "required" => true,
-  //     "min" => 10
-  //   ],
-  // ];
 
   // указываем только те инпуты, которые нам необходимы
 
@@ -84,8 +63,6 @@ die;
   }
 
 
-} else {
-  // include_once VIEWS . '/newPost.tpl.php';
 }
 
 include_once VIEWS . '/newPost.tpl.php';

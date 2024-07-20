@@ -1,5 +1,9 @@
 <?php
 
+use myfrm\Db;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
 require_once dirname(__DIR__) . '/config/config.php';
 
 require_once CORE . '/func.php';
@@ -10,13 +14,3 @@ require_once CORE . '/router.php';
 
 
 $db_config = require CONFIG . '/db.php';
-
-// require CORE . '/classes/Db.php';
-
-
-// require CONFIG . '/test.php';
-
-
-phpinfo();  
-
-//c:\games\programs\ospanel\modules\php\PHP_8.1\php.exe

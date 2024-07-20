@@ -1,0 +1,14 @@
+{
+    "name": "skruabin/test",
+    "autoload": {
+        "psr-4": {
+            "myfrm\\": "vendor/myfrm/core/classes"
+        }
+    },
+    "authors": [
+        {
+            "name": "Parsifalf"
+        }
+    ],
+    "require": {}
+}
